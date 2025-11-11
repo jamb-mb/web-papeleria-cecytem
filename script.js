@@ -34,39 +34,18 @@ function cerrar() {
     seleccion.style.opacity = "0";
     quitarbordes();
 }
-document.addEventListener('keyup', e => {
-    if (e.target.matches('#buscador')) {
-        document.querySelectorAll('.contenedor-foto').forEach(pape => {
-            pape.textContent.toLocaleLowerCase().includes(e.target.value)
-                ? pape.classList.remove('filtro')
-                : pape.classList.add('filtro');
-        })
-    }
-})
-document.addEventListener('keyup', e => {
-    if (e.target.matches('#buscador')) {
-        document.querySelectorAll('.serie').forEach(pape => {
-            pape.textContent.toLocaleLowerCase().includes(e.target.value)
-                ? pape.classList.remove('filtro')
-                : pape.classList.add('filtro');
-        })
-    }
-})
-document.addEventListener('keyup', e => {
-    if (e.target.matches('#buscador')) {
-        document.querySelectorAll('.descripcion').forEach(pape => {
-            pape.textContent.toLocaleLowerCase().includes(e.target.value)
-                ? pape.classList.remove('filtro')
-                : pape.classList.add('filtro');
-        })
-    }
-})
-document.addEventListener('keyup', e => {
-    if (e.target.matches('#buscador')) {
-        document.querySelectorAll('.precio').forEach(pape => {
-            pape.textContent.toLocaleLowerCase().includes(e.target.value)
-                ? pape.classList.remove('filtro')
-                : pape.classList.add('filtro');
-        })
-    }
-})
+document.addEventListener('input', e => {
+  if (e.target.matches('#buscador')) {
+    const valor = e.target.value.toLowerCase();
+
+    document.querySelectorAll('.contenedor-foto, .serie, .descripcion, .precio').forEach(pape => {
+      const texto = pape.textContent.toLowerCase();
+
+      if (texto.includes(valor)) {
+        pape.classList.remove('filtro');
+      } else {
+        pape.classList.add('filtro');
+      }
+    });
+  }
+});
